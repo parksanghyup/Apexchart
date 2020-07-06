@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #chart {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .yaxis {
+            padding: 100px;
+            border: 1px solid;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div style="max-width: 1000px; height: 500px; padding: 100px; border: 1px solid;">
+        <div id="chart"></div>
+    </div>
+    <div style="max-width: 1000px; height: 500px; padding: 100px; border: 1px solid;">
+        <div id="chart2"></div>
+    </div>
+    <div style="max-width: 1000px; height: 500px; padding: 100px; border: 1px solid;">
+        <div id="chart3"></div>
+    </div>
+</body>
+
+<script src="./apexcharts.js"></script>
+
+<script>
+      var options = {
+          series: [{
+          name: 'Net Profit',
+          data: [44, 55, 57, 56, 61, 58]
+        }, {
+          name: 'Revenue',
+          data: [76, 85, 101, 98, 87, 105]
+        }, {
+          name: 'Free Cash Flow',
+          data: [35, 41, 36, 26, 45, 48]
+        }],
+          chart: {
+          type: 'bar',
+          height: 350
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: '55%',
+            endingShape: 'rounded'
+          },
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ['transparent']
+        },
+        xaxis: {
+          categories: ['10대', '20대', '30대', '40대', '50대', '60대 이상'],
+        },
+        yaxis: {
+          title: {
+            text: '$ (thousands)'
+          }
+        },
+        fill: {
+          opacity: 1
+        },
+        tooltip: {
+          y: {
+            formatter: function (val) {
+              return "$ " + val + " thousands"
+            }
+          }
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+</script>
+<script>
+    var options = {
+        series: [
+        {
+            name: 'option1',
+            data: [14, 15, 17, 15, 10, 21,
+            ]
+        },
+        {
+            name: 'option2',
+            data: [14, 15, 17, 15, 10, 21,
+            ]
+        },
+        {
+            name: 'option3',
+            data: [17, 17, 25, 6, 22, 11,
+            ]
+        },
+        {
+            name: 'option1',
+            data: [-8, -15, -16, -18, -14, -12,
+            ]
+        },
+        {
+            name: 'option2',
+            data: [-8, -15, -16, -18, -14, -12,
+            ]
+        },
+        {
+            name: 'option3',
+            data: [-8, -15, -16, -18, -14, -12,
+            ]
+        }
+        ],
+        chart: {
+            type: 'bar',
+            height: 350,
+            stacked: true,
+            animations: {
+                enabled: true,
+                easing: 'easeinout',
+                speed: 500,
+            },
+        },
+        colors: ['#008FFB', '#FF4560', '#FFDE50'],
+        plotOptions: {
+            bar: {
+                horizontal: true,
+                // barHeight: '50%',
+            },
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            show: false,
+            width: 1,
+            colors: ["#FFF"]
+        },
+
+        grid: {
+            xaxis: {
+                lines: {
+                    show: false
+                }
+            }
+        },
+        yaxis: {
+            // min: -70,
+            // max: 70,
+            title: {
+                // text: 'Age',
+            },
+            labels: {
+                style: {
+                    cssClass: 'yaxis',
+                    fontSize: '14px',
+                },
+            }
+        },
+        tooltip: {
+            shared: false,
+            x: {
+                formatter: function (val,e,d) {
+                    return val
+                }
+            },
+            y: {
+                formatter: function (val) {
+                    return Math.abs(val) + "%"
+                }
+            }
+        },
+        title: {
+            text: '타이틀'
+        },
+        xaxis: {
+            categories: ['10대', '20대', '30대', '40대', '50대', '60대 이상'
+            ],
+            title: {
+                text: 'X축 제목'
+            },
+            labels: {
+                formatter: function (val) {
+                    return Math.abs(Math.round(val)) + "%"
+                }
+            },
+            axisTicks: {
+                show: false,
+                borderType: 'solid',
+                colors: '#000',
+                height: 100
+            }
+        },
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart2"), options);
+
+    chart.render();
+</script>
+<script>
+    
+    var options = {
+          series: [44, 55, 13, 43, 22],
+          chart: {
+          width: 380,
+          type: 'pie',
+        },
+        labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }]
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart3"), options);
+        chart.render();
+        
+</script>
+
+</html>
